@@ -17,7 +17,7 @@ class Book(models.Model):
     autors = models.CharField(max_length = 200)
     pages = models.IntegerField()
     summary = models.TextField(max_length = 500)
-    image = models.ImageField(upload_to = '') # we'll upload it on AWS s3 at the end
+    image = models.ImageField(upload_to = 'bookimages') # we'll upload it on AWS s3 at the end
     access = models.CharField(max_length = 20, choices = ACCESS_CHOICES, default = AL,) # by default it will be ALL
     active = models.BooleanField(default = True)
     created_at = models.DateTimeField (auto_now_add = True)
@@ -58,7 +58,7 @@ class Customer(models.Model):
     password = models.CharField(max_length = 200)
     age = models.IntegerField()
     gender = models.CharField(max_length = 20, choices = GENDER)
-    profile_image = models.ImageField(upload_to = '', default = '') # we'll add upload_to and default at the end
+    profile_image = models.ImageField(upload_to = 'profiles', null = True) # we'll add upload_to and default at the end
     created_at = models.DateTimeField(auto_now_add = True)
     
     # we'll come back to add methods if needed

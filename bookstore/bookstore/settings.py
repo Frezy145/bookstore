@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
     'rest_framework',
     'api',
 ]
@@ -79,9 +80,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'bookstore_db',
-        'USER': 'bookstore_db_user',
-        'PASSWORD': 'bookstore_db_password',
-        'HOST': '',
+        'USER': 'bookstoredbuser',
+        'PASSWORD': '02ocEnam26FC',
+        'HOST': 'larawsdb.c80zop20jsdu.us-east-1.rds.amazonaws.com',
         'PORT': '5432'
     }
 }
@@ -127,3 +128,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AWS_ACCESS_KEY_ID = 'AKIATVA4YCNVK4TNZIFP'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'bkstbucket'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_REGION_NAME = 'us-east-1'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_VERIFY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
