@@ -1,4 +1,5 @@
 from django.db import models, transaction
+from django.contrib.auth.models import AbstractUser
 # Models
 
 #Book model in which we'll store books
@@ -38,10 +39,8 @@ class Book(models.Model):
         self.active = True
         self.save()
     
-    
-
-# Customer model to store Customers
-class Customer(models.Model):
+# User model to store Users
+class User(AbstractUser):
     
     # gender choices
     MAL = 'MALE'
@@ -51,16 +50,11 @@ class Customer(models.Model):
         (FEM, 'Female')
     ]
     
-    firstname = models.CharField(max_length = 100)
-    surname = models.CharField(max_length = 50)
-    username = models.CharField(max_length = 50)
-    email = models.EmailField()
-    password = models.CharField(max_length = 200)
     age = models.IntegerField()
     gender = models.CharField(max_length = 20, choices = GENDER)
     profile_image = models.ImageField(upload_to = 'profiles', null = True) # we'll add upload_to and default at the end
-    created_at = models.DateTimeField(auto_now_add = True)
     
     # we'll come back to add methods if needed
+
     
     

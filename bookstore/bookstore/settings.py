@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-q3)e9js@(7f1a%*-&f066*q9l3azgz_u%nkdvfe&t(eh_x^ydn
 DEBUG = True
 
 ALLOWED_HOSTS = []
+AUTH_USER_MODEL = 'api.User'
 
 
 # Application definition
@@ -83,7 +84,7 @@ DATABASES = {
         'USER': 'bookstoredbuser',
         'PASSWORD': '02ocEnam26FC',
         'HOST': 'larawsdb.c80zop20jsdu.us-east-1.rds.amazonaws.com',
-        'PORT': '5432'
+        'PORT': '5432',
     }
 }
 
