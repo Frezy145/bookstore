@@ -23,6 +23,11 @@ class Book(models.Model):
     active = models.BooleanField(default = True)
     created_at = models.DateTimeField (auto_now_add = True)
     
+    # return the name on admin site
+    def __str__(self):
+        return self.name
+    
+    
     # we'll use this method in serializers to disable books
     @transaction.atomic
     def disable(self):
@@ -39,7 +44,7 @@ class Book(models.Model):
         self.active = True
         self.save()
     
-# User model to store Users
+# User model to store Users 
 class User(AbstractUser):
     
     # gender choices
@@ -50,9 +55,13 @@ class User(AbstractUser):
         (FEM, 'Female')
     ]
     
-    age = models.IntegerField()
+    age = models.IntegerField(default = 18) # need to put default to allow superuser creation with manage.py
     gender = models.CharField(max_length = 20, choices = GENDER)
-    profile_image = models.ImageField(upload_to = 'profiles', null = True) # we'll add upload_to and default at the end
+    profile_image = models.ImageField(upload_to = 'profiles', null = True) # images stoked in bucket/profiles
+    
+    # return the name on admin site
+    def __str__(self):
+        return self.username
     
     # we'll come back to add methods if needed
 

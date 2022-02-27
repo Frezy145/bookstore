@@ -130,6 +130,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# AWS access settings
 AWS_ACCESS_KEY_ID = 'AKIATVA4YCNVK4TNZIFP'
 AWS_SECRET_ACCESS_KEY = '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'
 AWS_STORAGE_BUCKET_NAME = 'bkstbucket'

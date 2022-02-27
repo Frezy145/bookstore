@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from api.models import Book, User
 from api.serializers import BookSerializer, BookDetailSerializer, UserSerializer, UserDetailSerializer
-from api.serializers import UserSignUpSerialiezer
+from api.serializers import UserSignUpSerialiezer, AdminSignUpSerializer
 
 # Mixin class
 class SerializerMixin:
@@ -24,7 +24,7 @@ class BookViewSet(SerializerMixin, ReadOnlyModelViewSet):
     
     def get_queryset(self):
         return Book.objects.all()
-    
+   
 #
 class UserViewSet(SerializerMixin, ReadOnlyModelViewSet):
     #serializer class
@@ -37,6 +37,13 @@ class UserViewSet(SerializerMixin, ReadOnlyModelViewSet):
 class UserSignUpViewSet(ModelViewSet):
     
     serializer_class = UserSignUpSerialiezer
+    
+    def get_queryset(self):
+        return User.objects.all()
+
+class AdminSignUpViewSet(ModelViewSet):
+    
+    serializer_class = AdminSignUpSerializer
     
     def get_queryset(self):
         return User.objects.all()

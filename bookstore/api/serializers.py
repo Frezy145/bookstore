@@ -7,7 +7,7 @@ class BookSerializer(ModelSerializer):
     class Meta:
         model = Book
         fields = ['name', 'autors', 'page']
-        
+      
 # User list serializer
 class UserSerializer(ModelSerializer):
     class Meta:
@@ -31,16 +31,9 @@ class UserDetailSerializer(ModelSerializer):
 class UserSignUpSerialiezer(ModelSerializer):
     class Meta:
         model = User
+        fields = ['first_name', 'last_name', 'age', 'gender', 'username', 'email', 'password', 'profile_image' ]
+
+class AdminSignUpSerializer(ModelSerializer):
+    class Meta:
+        model = User
         fields = '__all__'
-    
-    #validate username
-    def validate_username(self, value):
-        if User.objects.filter(username=value).exists():
-            raise serializers.ValidationError("has already existed")
-        return value
-    
-    # validate password
-    def validate(self, data):
-        if data['password'] != data['confirmed_password'] :
-            raise serializers.ValidationError('Not the same password')
-        return data
