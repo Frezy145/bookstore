@@ -1,6 +1,9 @@
 from rest_framework.viewsets import ReadOnlyModelViewSet, ModelViewSet
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.decorators import action
+from rest_framework.authtoken.models import Token
+
 from api.models import Book, User
 from api.serializers import BookSerializer, BookDetailSerializer, UserSerializer, UserDetailSerializer
 from api.serializers import UserSignUpSerialiezer
@@ -40,4 +43,22 @@ class UserSignUpViewSet(ModelViewSet):
     serializer_class = UserSignUpSerialiezer
     
     def get_queryset(self):
-        return User.objects.all()
+        return User.objects.filter(age=100)
+    
+    #@action(detail=False, method = ['post'])
+    def create(self, request):
+        data = {}
+        serializer = UserSignUpSerialiezer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            token = Token.objects.get(user=user).key
+            data['response'] = 'Succesfully regisetered'
+            data['username'] = user.username
+            data['email'] = user.email
+            data['token'] = token
+        else :
+            data = serializer.errors
+        return Response(data)
+        
+        
+    
