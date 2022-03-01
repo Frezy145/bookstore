@@ -16,16 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from api.views import BookViewSet, UserViewSet, UserSignUpViewSet
+from api.views import BookViewSet, UserViewSet, UserSignUpViewSet, AddBook
+from rest_framework.authtoken.views import obtain_auth_token
 
 #set router
 router = routers.SimpleRouter()
-router.register('book', BookViewSet, basename = 'books')
-router.register('user', UserViewSet, basename = 'users')
-router.register('signup', UserSignUpViewSet, basename = 'signup')
+router.register('books', BookViewSet, basename = 'books')
+router.register('users', UserViewSet, basename = 'users')
+router.register('register', UserSignUpViewSet, basename = 'signup')
+router.register('management', AddBook, basename = 'management')
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api-auth/', include ('rest_framework.urls')),
+    path('obtoken/', obtain_auth_token),
     path('api/', include(router.urls)),
+    path('admin/', admin.site.urls),
+    path('auth/', include ('rest_framework.urls')),
 ]

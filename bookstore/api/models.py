@@ -6,8 +6,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 
-# Models
-
 #Book model in which we'll store books
 
 class Book(models.Model):
@@ -32,7 +30,6 @@ class Book(models.Model):
     # return the name on admin site
     def __str__(self):
         return self.name
-    
     
     # we'll use this method in serializers to disable books
     @transaction.atomic
